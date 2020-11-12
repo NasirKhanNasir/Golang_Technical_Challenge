@@ -11,10 +11,12 @@ import (
 	// "golang.org/x/net/html"
 )
 
-func main() {
+func main() 
+{
 	
 	blogTitles, err := GetLatestBlogTitles("https://golang.org/")
-	if err != nil {
+	if err != nil 
+	{
 		log.Println(err)
 	}
 	fmt.Printf(blogTitles)
@@ -25,59 +27,71 @@ func main() {
 
 // GetLatestBlogTitles gets the latest blog title headings from the url
 // given and returns them as a list.
-func GetLatestBlogTitles(url string) (string, error) {
+func GetLatestBlogTitles(url string) (string, error) 
+{
 	// valid:=""
 	// Get the HTML
 	iLinks:=0
 	resp, err := http.Get(url)
-	if err != nil {
+	if err != nil 
+	{
 		return "", err
 	}
 	defer resp.Body.Close()
 	// reads html as a slice of bytes
 	html, err := ioutil.ReadAll(io.LimitReader(resp.Body, 15))
-	if err != nil {
+	if err != nil 
+	{
 		// panic(err)
 	}
 	// show the HTML code as a string %s
 	fmt.Printf("Html Version: %s ", html)
 	// Convert HTML into goquery document
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
-	if err != nil {
+	if err != nil 
+	{
 		return "", err
 	}
 	fmt.Println(doc)
 	// Save each .post-title as a list
 	titles := ""
-	doc.Find("head title").Each(func(i int, s *goquery.Selection) {
+	doc.Find("head title").Each(func(i int, s *goquery.Selection) 
+	{
 		titles += "- " + s.Text() + ""
 	})
 	h1:=0
-	doc.Find("h1").Each(func(i int, s *goquery.Selection) {
+	doc.Find("h1").Each(func(i int, s *goquery.Selection) 
+	{
 		h1++
 		// fmt.Println(s.Text())
 	})
 	h2:=0
-	doc.Find("h2").Each(func(i int, s *goquery.Selection) {
+	doc.Find("h2").Each(func(i int, s *goquery.Selection) 
+	{
 		h2++
 	})
 	h3:=0
-	doc.Find("h3").Each(func(i int, s *goquery.Selection) {
+	doc.Find("h3").Each(func(i int, s *goquery.Selection) 
+	{
 		h3++
 	})
 	h4:=0
-	doc.Find("h4").Each(func(i int, s *goquery.Selection) {
+	doc.Find("h4").Each(func(i int, s *goquery.Selection) 
+	{
 		h4++
 	})
 	links:=0
-	doc.Find("a").Each(func(i int, s *goquery.Selection) {
+	doc.Find("a").Each(func(i int, s *goquery.Selection) 
+	{
 		links++
 		// valid:= s.Attr("href")
 		band, ok := s.Attr("href")
-	    if ok {
+	    if ok 
+	   {
 	        // fmt.Println(IsUrl(band))
 	        valid := IsUrl(band)
-			if(!valid){
+			if(!valid)
+			{
 				iLinks++
 			}
 	    }
@@ -86,11 +100,14 @@ func GetLatestBlogTitles(url string) (string, error) {
 
 	})
 	form:="No"
-	doc.Find("input").Each(func(i int, s *goquery.Selection) {
+	doc.Find("input").Each(func(i int, s *goquery.Selection) 
+	{
 		band, ok := s.Attr("name")
-		if ok {
+		if ok 
+	    {
 	        // fmt.Println(IsUrl(band))
-	        if(band=="password"){
+	        if(band=="password")
+		{
 	        	form="Yes"
 	        }
 	    }
@@ -115,7 +132,8 @@ func GetLatestBlogTitles(url string) (string, error) {
 	
 	return "0", nil
 }
-func IsUrl(str string) bool {
+func IsUrl(str string) bool 
+{
     u, err := url.Parse(str)
     return err == nil && u.Scheme != "" && u.Host != ""
 }
