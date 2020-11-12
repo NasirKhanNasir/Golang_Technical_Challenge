@@ -30,6 +30,8 @@ func main()                //area
 //note: there may be some respositories issues and some enviornment variables issues, so all of the workspace must be completely set in order to let the applicattion proper work.
 
 
+/*since the logic for the form i used is to get the field of password and detect on it that whether a site use a password field or not, it may vary for site to site,. because somesites like facebook don't use the name of password field as "password" in the sign up page so that form would appear as No-login form. in order to achieve that we have to manullay select that login field and check the variable name. */
+
 
 Author:
 Nasir Khan.
