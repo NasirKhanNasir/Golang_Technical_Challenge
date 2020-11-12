@@ -9,10 +9,10 @@ Step by Step procedure for the task solution
 To check which ever link one want to test just add it in the:
 
 
-func main()                //area
+func main()                //area             i.e.  espncricinfo.com       etc
 {
       //i.e. here i have used espncricinfo website, in the main code i used golang.org site.
-	blogTitles, err := GetLatestBlogTitles("https://www.espncricinfo.com/")
+	blogTitles, err := GetLatestBlogTitles("https://golang.org/")
 
 //there are multiple approach one can take value from user using scanner  Scanln(&first)  but i think it is easy to just write it here.
 
